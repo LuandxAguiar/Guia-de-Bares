@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+ <link rel="stylesheet" href="/cssLista.css">
+<meta charset="UTF-8">
+<title>Listagem de Administradores</title>
+</head>
+<body>
+	
+	<header th:replace="fragments/padrao :: cabecalho" >
+		
+	</header>
+      
+	<table>
+		<thead>
+			<th> Id</th>
+			<th> Nome</th>
+			<th> Email</th>	
+			<th> Alterar ADM</th>
+			<th> Excluir</th>
+		</thead>
+		
+		<tbody>
+			<!-- Percorer o cod -->
+			<tr th:each="adm: ${admins}">
+				<td th:text="${adm.id}">
+				<td th:text="${adm.nome}">
+				<td th:text="${adm.email}">
+				<td> <a th:href="@{/alterar(id=${adm.id})}"><span id = "alterar"class="material-icons">
+			mode_edit_outline
+</span></a></td>
+				<!-- metodo de exlclusao -->
+				<td><a th:attr="onclick= | return confirm('Deseja excluir o ID: ${adm.id}')|"
+						th:href="@{/excluir(id=${adm.id})}"><span id="exclu" class="material-icons">
+		delete_outline
+</span></a></td>
+			</tr>
+			
+			
+			
+			
+			</tr>
+			
+		</tbody>
+	
+	
+	</table>
+			
+	
+
+
+</ul>
+	  </ul>
+	
+
+
+<div>
+<ul class="pagination">
+			<li th:class="${pagAtual1 == 1 ? 'disabled' : 'waves-effect'}"><a class="btnum"
+			th:href="${pagAtual1 > 1 ? pagAtual1 - 1 : '#'}"><i
+			class="material-icons">chevron_left</i></a></li>
+			
+			
+			<li th:class="${pagAtual1 == p ?'active blue' : 'waves-effec'}"  th:each="p:${numPaginas1}"><a th:href="${p}"><span
+			th:text="${p}"></span></a></li>
+			
+			
+			
+			<li th:class="${pagAtual1 == totalPages1 ? 'disabled' : 'waves-effect'}"><a th:href="${pagAtual1 < totalPages1 ? pagAtual1 + 1 : '#'}"><i
+			class="material-icons">chevron_right</i></a></li>
+</div>
+	<footer th:replace="fragments/padrao :: rodape" ></footer>
+	</body>
+</html>

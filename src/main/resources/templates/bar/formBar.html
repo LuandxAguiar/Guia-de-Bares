@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario do Bar</title>
+<style>
+* {
+	text-align: center;
+}
+
+body {
+	background-image: url("fundo2.jpg");
+	margin-top: 8%;
+}
+
+form {
+	background-color: aliceblue;
+	box-sizing: border-box;
+	width: 70%;
+	padding: 80px;
+	margin-left: 18%;
+}
+
+.main {
+	border: solid 2px black;
+	box-sizing: border-box;
+}
+
+input {
+	margin: 2.4%;
+	padding: 1.7%;
+}
+
+div.main {
+	width: 50%;
+	margin-left: 20%;
+}
+
+div.atracoes {
+	margin-right: 2.1%;
+}
+
+div.hora {
+	margin-right: 6.2%;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+label.lbt {
+	padding: 20px 10px;
+	width: 200px;
+	background-color: #333;
+	color: #FFF;
+	text-transform: uppercase;
+	text-align: center;
+	display: block;
+	margin-top: 10px;
+	cursor: pointer;
+	margin-left: 35%;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<!-- enctype mutypart/form-data para ele vai submeter a imagem ao formato
+		so pode ser ultiliado se for methodo post 
+		
+		para fazer upload 
+		 -->
+	<form action="saveBar" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" th:value="${bares?.id}">
+		
+		<div class="main">
+		<h1>Formulario de Cadastro de Bares</h1>
+			<div class="nm">
+				<label>nome</label><input type="text" name="nome"
+					th:value="${bares?.nome}"> 
+					<label>Descricao</label><input
+					type="text" name="descricao" th:value="${bares?.descricao}">
+				<br>
+			</div>
+
+			<br> <i class="material-icons">home</i><select name="tipo.id">
+				<option th:each="t: ${tipo}" th:text="${t.nome}" th:value="${t.id}"
+					th:selected="${t.id == bar?.tipo?.id}"></option>
+			</select> <br>
+			
+			<!-- endereço -->
+			<label> <i class="material-icons">location_on</i> <input
+				name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+				placeholder="Digite seu Cep" th:value="${bares?.cep}" />
+				</label>
+				<br>
+			<br> 
+			<label>Rua: <input name="endereco" type="text"
+				id="rua" size="60" readonly="readonly" th:value="${bares?.endereco}" />
+				 <br>
+				<label>Num:</label><input name="numero" type="text" id="nume"
+				size="60" th:value="${bares?.numero}" />
+				
+			</label><br /> <label>Bairro: <input name="bairro" type="text"
+				id="bairro" size="40" readonly="readonly" th:value="${bares?.bairro}" />
+				</label>
+				<br>
+			<label>Complemento: <input name="complemento" type="text"
+				id="complemento" size="40" th:value="${bares?.complemento}" /> 
+				<br>
+				<label>Cidade: <input name="cidade" type="text" id="cidade"
+					size="40" readonly="readonly" th:value="${bares?.cidade}" />
+					
+			</label><br /> <label>Estado: <input name="estado" type="text"
+					id="uf" size="2" readonly="readonly" th:value="${bares?.estado}" />
+					</label><br />
+
+				<div class="tow">
+
+
+					<div class="atracoes">
+						<label>Atrações</label><input type="text" name="atracoes">
+						<label> <i class="material-icons" th:checked="${bares?.atracoes}">assistant</i>
+						</label><input type="text" name="formaPagamento"
+							placeholder="Formas de Pagamento" th:value="${bares?.formaPagamento}"> <br>
+					</div>
+
+					<div class="hora">
+						<label><i class="material-icons">alarm</i> </label><input
+							type="text" name="horario" placeholder="Horario de Funcionamento" th:value="${bares?.horario}">
+						<label class="lb"><i class="material-icons">http</i></label><input
+							type="text" name="site" placeholder="Seu Site" th:value="${bares?.site}"> <br>
+					</div>
+
+					<div class="number">
+						<label><i class="material-icons">contact_phone</i></label><input
+							type="text" name="telefone" th:value="${bares?.telefone}"> <br>
+					</div>
+				</div>
+				<div class="aces">
+					<label><i class="material-icons">accessible</i> </label>
+
+					<td><input type="checkbox" name="acessibilidade" th:checked="${bares?.acessibilidade}"></td> <br>
+				</div>
+
+				<div class="estacionamentos">
+					<label><i class="material-icons">directions_car</i> </label>
+					<td><input type="checkbox" name="estacionamento" th:checked="${bares?.estacionamento}"></td> <br>
+
+					<div class="deliver">
+						<i class="material-icons"> motorcycle</i> <input type="checkbox"
+							name="delivery" th:checked="${bares?.delivery}">
+					</div>
+
+
+					<div class="preco1">
+						<label><i class="material-icons"> attach_money</i></label> <input
+							type="range" min="1" max="5" name="preco" th:value="${bares?.preco}"> <br>
+					</div>
+					<div>
+						<label class="lbt" for="arquivo">Enviar arquivo</label> <input
+							class="nms" type="file" name="fileFotos" id="arquivo" multiple
+							accept="image/*">
+					</div>
+
+				</div> 
+				<input type="hidden" th:value="${bares?.fotos}" name="fotos">
+				<input type="submit" value="salvar">
+				<div th:if="${bares?.fotos?.length > 0 }">
+				
+					<h6>Fotos Cadastradas</h6>
+					<div class = "fotos">
+						<ul id="listFoto" >
+							<li th:each="foto, i : ${bares?.verFotos()}">
+								<a th:href="${foto}" target="blank"> <img th:src="${foto}" width="50px;"></a>
+								<a th:href="@{/excluirFotos(idRest = ${bares?.id}, numFoto =${i.index} )}"><i class="material-icons">delete_forever</i> </a>
+							</li>
+						</ul>
+					</div>
+				
+				</div>
+	</form>
+
+	<!-- Jquery :) -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="busq.js">
+		
+	</script>
+</body>
+</html>

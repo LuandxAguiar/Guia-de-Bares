@@ -1,0 +1,45 @@
+.pagination{
+	
+ 	
+    bottom: 40px;
+   	margin-left:42.5%;
+    background-color: #ffffff;
+    border-radius: 50px;
+    z-index: 1000;
+    background-color: gold;
+    margin-top: 31em;
+    width:  10.9%;
+ }
+ btnum{
+ 	background-color: orange;
+ 	
+ }
+ #exclu{
+ text-decoration: none;
+ color:red;
+ margin-left: 6.5%;
+ }
+ #alterar{
+ 	text-decoration: none;
+ 	color: #d8c910;
+ 	text-align: center;
+ 	margin-left: 8%;
+ }
+ .nav-wrapper{
+ background-color: black;
+ }
+ th{
+ 	padding-left: 5%;
+ 	background-color: #483d8b;
+ 	font-size: 112%;
+ 	color:white;
+ 	
+ }
+ td{
+	 padding-left:  5%; 
+	 
+ }
+ .page-footer{
+	position: inherit;
+	background-color: black;
+ }

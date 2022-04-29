@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista Bar </title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+	
+
+.page-footer{
+	bottom :100px;
+	position: fixed;
+	 width: 100%;
+	 background-color: black;
+} 
+.pagination{
+	margin-left:42%;
+	position:fixed;
+    background-color: #ffffff;
+    border-radius: 50px;
+    z-index: 1000;
+    background-color: gold;
+  	bottom: 35%;
+    
+ }
+th{
+	padding-left: 5%;
+ 	background-color:  #483d8b;
+ 	color:white;
+ 	
+}
+td{
+	padding-left: 5%;
+}
+a.brand-logo{
+	margin-right: 18em;
+}
+</style>
+</head>
+<body>
+		<header th:replace="fragments/padrao :: cabecalho" >
+		
+	</header>
+	<!-- Buscar Lista -->
+	      <form action="/buscar">
+	      	<table>
+	      <td class="search"><input type="search" style="width: 20%;text-align: center" name=buscar>
+	      <button type="submit"><i class="material-icons" >search</i> </button>
+	      	</table>
+	      </form>
+	     
+	<table>
+		<thead>
+		
+			<th> Id</th>
+			<th> Nome</th>
+			<th> Palavras Chaves</th>
+			<th> Faixa Etaria</th>
+			<th> Alterar </th>
+			<th> Excluir </th>
+		</thead>
+		
+		<tbody>
+			<!-- Percorer o cod -->
+			<tr th:each="bar: ${bares}">
+				<td th:text="${bar.id}">
+				<td th:text="${bar.nome}">
+				<td th:text="${bar.palavrasChave}">
+				<td th:text="${bar.idade}">	
+				<td> <a th:href="@{/altere(id=${bar.id})}"><span id = "alterar"class="material-icons">
+			mode_edit_outline
+</span></a></td>
+				<td> <a th:attr="onclick= | return confirm('Deseja excluir o ID: ${bar.id}')|"
+				th:href="@{/exclua(id=${bar.id})}"><span id="exclu" class="material-icons">delete_outline</span></a></td>
+				
+		
+</body>
+<main>
+<div>
+<ul class="pagination">
+			<li th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect'}"><a class="btnum"
+			th:href="${pagAtual > 1 ? pagAtual - 1 : '#'}"><i
+			class="material-icons">chevron_left</i></a></li>
+			
+			
+			<li th:class="${pagAtual == p ?'active blue' : 'waves-effec'}"  th:each="p:${numPaginas}"><a th:href="${p}"><span
+			th:text="${p}"></span></a></li>
+			
+			
+			
+			<li th:class="${pagAtual == totalPages ? 'disabled' : 'waves-effect'}"><a th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}"><i
+			class="material-icons">chevron_right</i></a></li>
+</div>
+</main>
+		<footer class="page-footer" th:replace="fragments/padrao :: rodape" ></footer>
+</html>

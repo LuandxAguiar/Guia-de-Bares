@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cadastro de Categoria de bares</title>
+<style>
+*{
+text-align:center;
+	margin: 0;
+	width: auto;
+}
+h1{
+	text-align: center;
+}
+body{
+		background-image: url("fundo2.jpg");
+
+}
+.cont{
+	border: solid 2px black;
+	box-sizing: border-box;
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 10%;
+	box-shadow: 3px 3px black, -1em 0 0.4em black;
+}
+form{
+	background-color: white;
+}
+.form{
+	
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	flex-direction: inherit;
+	
+}
+input{
+	width: 84%;
+}
+.botoa{
+	background-color: green;
+	
+}
+label{
+	font-size: 30px;
+}
+
+</style>
+ <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+		<header style="background-color: black" class="nav-wrapper" th:replace="fragments/padrao :: cabecalho" >
+		
+	</header>
+		
+	</header>
+	<h1>Cadastro de Tipo de Bares</h1>
+	<div class="cont" style="text-align: center">
+		
+		
+		<div class="two">
+		<form action="salvarBar" method="post">
+
+			<input type="hidden" name="id" th:value="${bart?.id}" />
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Tipo do Bar</label>
+					<br>
+					 <input type="text" class="nome"
+						id="nome" name="nome" placeholder="Digite o Tipo de Bar"
+						th:value="${bart?.nome}"/>
+				</div>
+				<div class="Descrição">
+					<label>Descrição</label> 
+					<br>
+					<input type="text"
+						name="descricao"
+						th:value="${bart?.descricao}"
+						/>
+				</div>
+			</div>
+			<div class="palavra">
+				<label>Palavras chaves</label>
+				<br>
+				 <input type="text"
+					name="palavrasChave" class="palavra" id="palavra"
+					placeholder="Escreva palavras Chaves"
+					th:value="${bart?.palavrasChave}"
+					/>
+
+				<div class="idade">
+					<label> Idade</label>
+					<br>
+					<input type="texte" name="idade" class="idade"
+						placeholder="Faixa-etaria do Bar"
+						th:value="${bart?.idade}"
+						 />
+				</div>
+				</div>
+				<br>
+				<div class="bt">
+				<button type="submit" class="waves-effect waves-light btn">Salvar</button>
+				</div>
+		</form>
+	</div>
+</body>
+</html>

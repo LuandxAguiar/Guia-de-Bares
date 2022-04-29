@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastro de Administrador</title>
+<link rel="stylesheet" href="cadAdmincss.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<style>
+
+	a{
+		margin-right: 4em;
+	}
+	nav{
+    background-color: black;
+	}
+
+</style>
+</head>
+
+<body>
+
+	<header>
+		<!--JavaScript at end of body for optimized loading-->
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<nav>
+			<div class="nav-wrapper " id="st" style="background-color: black">
+				
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="sass.html"><a href="/cadAdm"><b>Cadastre
+									adm</b></a></a></li>
+					<li><a href="badges.html">Components</a></li>
+					<li><a href="collapsible.html">JavaScript</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<div>
+		<form action="salvarAdmin" method="post">
+			<input type="hidden" name="id" th:value="${admin?.id}" />
+
+			<table>
+
+				<tr>
+					<i class="image"></i>
+					<td><i class="material-icons">person_add </i></td>
+					<td><input type="text" name="nome"
+						placeholder="Digite seu nome" th:value="${admin?.nome}" /></td>
+				<tr>
+					<td><i class="material-icons">email</i></td>
+
+					<td><input type="email" name="email" placeholder="Email"
+						th:value="${admin?.email}" /></td>
+
+
+				</tr>
+				<tr>
+					<td><i class="material-icons">https </i></td>
+					<a class="senha"><i><img class="senha" alt="senha"
+							src="senha.png"></i></a>
+					<td><input type="password" id="password" name="senha"
+						autocomplete="off" placeholder="Digite sua senha" /></td>
+					<span id="password-status"></span>
+
+
+
+
+
+				</tr>
+				<div class="bt">
+					<tr>
+						<td><button type="submit" style="background-color: green">Salvar</button></td>
+
+					</tr>
+			</table>
+			<br>
+			<div th:replace="fragments/mensagem"></div>
+	</div>
+	</form>
+	</div>
+</body>
+</html>
